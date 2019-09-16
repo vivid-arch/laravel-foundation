@@ -1,0 +1,25 @@
+{
+    "name": "vivid-arch/laravel-foundation",
+    "description": "The Foundation of the Vivid Architecture for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Meletios Flevarakis",
+            "email": "m.flevarakis@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Vivid\\Foundation\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vivid\\Foundation\\VividServiceProvider"
+            ]
+        }
+    }
+}

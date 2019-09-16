@@ -1,0 +1,43 @@
+<?php
+
+/*
+ * This file is part of the vivid-foundation project.
+ *
+ * Copyright for portions of project lucid-foundation are held by VineLab, 2016 as part of Lucid Architecture.
+ * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2019.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Vivid\Foundation;
+
+use Illuminate\Support\Collection;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Vivid\Foundation\Events\FeatureStarted;
+
+trait ServesFeaturesTrait
+{
+    use MarshalTrait;
+    use DispatchesJobs;
+
+    /**
+     * Serve the given feature with the given arguments.
+     *
+     * @param string $feature
+     * @param array $arguments
+     *
+     * @return mixed
+     * @throws \ReflectionException
+     */
+    public function serve($feature, $arguments = [])
+    {
+        event(new FeatureStarted($feature, $arguments));
+
+        resolve('Vivid\Foundation\Instance')->setFeature(
+            $feature
+        );
+
+        return $this->dispatch($this->marshal($feature, new Collection(), $arguments));
+    }
+}
