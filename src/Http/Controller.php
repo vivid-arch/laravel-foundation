@@ -12,9 +12,9 @@
 
 namespace Vivid\Foundation\Http;
 
-use Vivid\Foundation\ServesFeaturesTrait;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+use Vivid\Foundation\ServesFeaturesTrait;
 
 /**
  * Base controller.
@@ -24,11 +24,10 @@ class Controller extends BaseController
     use ValidatesRequests;
     use ServesFeaturesTrait;
 
-    function __construct()
+    public function __construct()
     {
         resolve('Vivid\Foundation\Instance')->setController(
             get_class($this)
         );
     }
-
 }

@@ -15,14 +15,14 @@ namespace Vivid\Foundation;
 /**
  * @author Meletios Flevarakis <m.flevarakis@gmail.com>
  */
-class Instance {
-
+class Instance
+{
     protected $startTime;
     protected $controller;
     protected $feature;
     protected $jobs = [];
-    
-    function __construct()
+
+    public function __construct()
     {
         $this->startTime = microtime(true);
     }
@@ -49,8 +49,8 @@ class Instance {
     public function addToJobStack(string $job)
     {
         array_push($this->jobs, [
-            'fqn' => $job,
-            'time' => microtime(true)
+            'fqn'  => $job,
+            'time' => microtime(true),
         ]);
     }
 
@@ -81,11 +81,10 @@ class Instance {
     public function toArray(): array
     {
         return [
-            'start' => $this->startTime,
+            'start'      => $this->startTime,
             'controller' => $this->controller,
-            'feature' => $this->feature,
-            'jobs' => $this->jobs
+            'feature'    => $this->feature,
+            'jobs'       => $this->jobs,
         ];
     }
-
 }

@@ -12,8 +12,8 @@
 
 namespace Vivid\Foundation;
 
-use Exception;
 use ArrayAccess;
+use Exception;
 use ReflectionClass;
 use ReflectionParameter;
 
@@ -22,12 +22,13 @@ trait MarshalTrait
     /**
      * Marshal a command from the given array accessible object.
      *
-     * @param string $command
+     * @param string       $command
      * @param \ArrayAccess $source
-     * @param array $extras
+     * @param array        $extras
+     *
+     * @throws \ReflectionException
      *
      * @return mixed
-     * @throws \ReflectionException
      */
     protected function marshal($command, ArrayAccess $source, array $extras = [])
     {
@@ -47,13 +48,14 @@ trait MarshalTrait
     /**
      * Get a parameter value for a marshaled command.
      *
-     * @param string $command
-     * @param \ArrayAccess $source
+     * @param string               $command
+     * @param \ArrayAccess         $source
      * @param \ReflectionParameter $parameter
-     * @param array $extras
+     * @param array                $extras
+     *
+     * @throws \ReflectionException
      *
      * @return mixed
-     * @throws \ReflectionException
      */
     protected function getParameterValueForCommand($command, ArrayAccess $source,
         ReflectionParameter $parameter, array $extras = [])
