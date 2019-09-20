@@ -1,13 +1,10 @@
 # Laravel Vivid Architecture
 
-Vivid Architecture is an architectural package that assists in wiring clean code. It is based on Lucid which was released in 2016 by VineLabs.
+[![Latest Stable Version](https://poser.pugx.org/vivid-arch/laravel-foundation/v/stable)](https://packagist.org/packages/vivid-arch/laravel-foundation)
+[![Total Downloads](https://poser.pugx.org/vivid-arch/laravel-foundation/downloads)](https://packagist.org/packages/vivid-arch/laravel-foundation)
+[![Latest Unstable Version](https://poser.pugx.org/vivid-arch/laravel-foundation/v/unstable)](https://packagist.org/packages/vivid-arch/laravel-foundation)
+[![License](https://poser.pugx.org/vivid-arch/laravel-foundation/license)](https://packagist.org/packages/vivid-arch/laravel-foundation)
 
-### Differences with Lucid
+Vivid is a clear and concise way to structure your code. It works with the framework and not against it. It's an extension of Laravel that adds value and does not change the standard conventions.
 
-+ Vivid ditched the scaffold. You can just pull the `foundation-laravel` and you are ready to go.
-+ Vivid files are now inside the `/app` directory instead of the `/src`.
-+ Added a call stack inside the IoC. By resolving a specific class you can see debug information regarding which feature has been called, the sequense of jobs and other useful data.
-+ Seperated and rewrote the Dashboard in to a third package independed of the console.
-+ Models are a concern of Laravel and not Vivid. Therefore you can only generate them using the laravel command.
-+ Services have been renamed to Devices.
-+ You can no longer delete files using the console.
+[Documentation](https://vivid-arch.github.io/docs/foundation/getting-started/)
