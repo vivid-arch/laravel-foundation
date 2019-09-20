@@ -12,13 +12,10 @@
 
 namespace Vivid\Foundation;
 
-use Vivid\Foundation\Events\JobStarted;
-use Vivid\Foundation\Events\OperationStarted;
-use ReflectionClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use App\Domains\Queue\DefaultQueue;
-use Illuminate\Foundation\Bus\DispatchesJobs;
+use ReflectionClass;
+use Vivid\Foundation\Events\JobStarted;
 
 trait JobDispatcherTrait
 {
@@ -58,11 +55,12 @@ trait JobDispatcherTrait
      * Run the given job in the given queue.
      *
      * @param string $job
-     * @param array $arguments
+     * @param array  $arguments
      * @param string $queue
      *
-     * @return mixed
      * @throws \ReflectionException
+     *
+     * @return mixed
      */
     public function runInQueue($job, array $arguments = [], $queue = 'default')
     {

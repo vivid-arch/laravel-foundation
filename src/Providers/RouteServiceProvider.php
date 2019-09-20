@@ -18,7 +18,7 @@ use Illuminate\Routing\Router;
 abstract class RouteServiceProvider extends BaseServiceProvider
 {
     /**
-     * Read the routes from the "api.php" and "web.php" files of this Service
+     * Read the routes from the "api.php" and "web.php" files of this Service.
      *
      * @param \Illuminate\Routing\Router $router
      */
@@ -52,12 +52,12 @@ abstract class RouteServiceProvider extends BaseServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes($router, $namespace, $path, $prefix='api')
+    protected function mapApiRoutes($router, $namespace, $path, $prefix = 'api')
     {
         $router->group([
             'middleware' => 'api',
             'namespace'  => $namespace,
-            'prefix'     => $prefix // to allow the delete or change of api prefix
+            'prefix'     => $prefix, // to allow the delete or change of api prefix
         ], function ($router) use ($path) {
             require $path;
         });
@@ -78,7 +78,7 @@ abstract class RouteServiceProvider extends BaseServiceProvider
     {
         $router->group([
             'middleware' => 'web',
-            'namespace'  => $namespace
+            'namespace'  => $namespace,
         ], function ($router) use ($path) {
             require $path;
         });

@@ -12,8 +12,8 @@
 
 namespace Vivid\Foundation;
 
-use Illuminate\Support\Collection;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Support\Collection;
 use Vivid\Foundation\Events\FeatureStarted;
 
 trait ServesFeaturesTrait
@@ -25,10 +25,11 @@ trait ServesFeaturesTrait
      * Serve the given feature with the given arguments.
      *
      * @param string $feature
-     * @param array $arguments
+     * @param array  $arguments
+     *
+     * @throws \ReflectionException
      *
      * @return mixed
-     * @throws \ReflectionException
      */
     public function serve($feature, $arguments = [])
     {

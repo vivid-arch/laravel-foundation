@@ -26,8 +26,9 @@ class FeatureStarted
 
     /**
      * FeatureStarted constructor.
-     * @param  string  $name
-     * @param  array  $arguments
+     *
+     * @param string $name
+     * @param array  $arguments
      */
     public function __construct($name, array $arguments = [])
     {
