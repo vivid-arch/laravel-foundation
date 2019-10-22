@@ -12,7 +12,7 @@ return [
     | You can also toggle which devices will be loaded by the application
     | by adding true of false to each device. For example:
     |
-    | Will be register:
+    | Will be registred:
     | 'devices' => [
     |       'App\Devices\Example1\Providers\ExampleServiceProvider'
     |       'App\Devices\Example2\Providers\ExampleServiceProvider' => true
