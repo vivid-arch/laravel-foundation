@@ -20,14 +20,8 @@ class VividServiceProvider extends ServiceProvider
         
         $devices = config('vivid.devices');
         
-        // Register the Devices
-        foreach($devices as $k => $v)
-        {
-            if($v !== false && is_string($k))
-                $this->app->register($k);
-            elseif(is_int($k))
-                $this->app->register($v);
-        }
+        if(is_array($devices))
+            $this->registerDevices($devices);
     }
 
     /**
@@ -41,5 +35,21 @@ class VividServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/vivid.php' => config_path('vivid.php'),
         ], 'vivid-config');
+    }
+    
+    /**
+     * Register an array of Devices.
+     *
+     * @return void
+     */
+    private function registerDevices(array $devices)
+    {
+        foreach($devices as $k => $v)
+        {
+            if($v !== false && is_string($k))
+                $this->app->register($k);
+            elseif(is_int($k))
+                $this->app->register($v);
+        }
     }
 }
