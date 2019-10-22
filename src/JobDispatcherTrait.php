@@ -41,6 +41,7 @@ trait JobDispatcherTrait
             }
 
             event(new JobStarted(get_class($job), $arguments));
+            
             resolve('Vivid\Foundation\Instance')->addToJobStack(
                 get_class($job)
             );

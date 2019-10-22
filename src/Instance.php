@@ -57,7 +57,7 @@ class Instance
     /**
      * @return mixed
      */
-    public function getController()
+    public function controller()
     {
         return $this->controller;
     }
@@ -65,7 +65,7 @@ class Instance
     /**
      * @return mixed
      */
-    public function getFeature()
+    public function feature()
     {
         return $this->feature;
     }
@@ -73,7 +73,7 @@ class Instance
     /**
      * @return array
      */
-    public function getJobs(): array
+    public function jobs(): array
     {
         return $this->jobs;
     }
