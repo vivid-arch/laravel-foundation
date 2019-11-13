@@ -8,3 +8,8 @@
 Vivid is a clear and concise way to structure your code. It works with the framework and not against it. It's an extension of Laravel that adds value and does not change the standard conventions.
 
 [Documentation](https://vivid-arch.github.io/docs/foundation/getting-started/)
+
+## Packages
+
++ [vivid-arch/laravel-foundation](https://packagist.org/packages/vivid-arch/laravel-foundation)
++ [vivid-arch/laravel-console](https://packagist.org/packages/vivid-arch/laravel-console)
