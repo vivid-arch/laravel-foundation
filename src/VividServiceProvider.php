@@ -17,11 +17,12 @@ class VividServiceProvider extends ServiceProvider
         $this->app->singleton('Vivid\Foundation\Instance', function ($app) {
             return new Instance();
         });
-        
+
         $devices = config('vivid.devices');
-        
-        if(is_array($devices))
+
+        if (is_array($devices)) {
             $this->registerDevices($devices);
+        }
     }
 
     /**
@@ -36,7 +37,7 @@ class VividServiceProvider extends ServiceProvider
             __DIR__.'/../config/vivid.php' => config_path('vivid.php'),
         ], 'vivid-config');
     }
-    
+
     /**
      * Register an array of Devices.
      *
@@ -44,12 +45,12 @@ class VividServiceProvider extends ServiceProvider
      */
     private function registerDevices(array $devices)
     {
-        foreach($devices as $k => $v)
-        {
-            if($v !== false && is_string($k))
+        foreach ($devices as $k => $v) {
+            if ($v !== false && is_string($k)) {
                 $this->app->register($k);
-            elseif(is_int($k))
+            } elseif (is_int($k)) {
                 $this->app->register($v);
+            }
         }
     }
 }
