@@ -13,3 +13,7 @@ Vivid is a clear and concise way to structure your code. It works with the frame
 
 + [vivid-arch/laravel-foundation](https://packagist.org/packages/vivid-arch/laravel-foundation)
 + [vivid-arch/laravel-console](https://packagist.org/packages/vivid-arch/laravel-console)
+
+## Sponsors
+
+![Xenia Rewards](https://www.xeniarewards.com/wp-content/uploads/2020/03/XR-LOGO_black_name_side_130px.png)
