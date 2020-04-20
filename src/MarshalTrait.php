@@ -57,8 +57,12 @@ trait MarshalTrait
      *
      * @return mixed
      */
-    protected function getParameterValueForCommand($command, ArrayAccess $source,
-        ReflectionParameter $parameter, array $extras = [])
+    protected function getParameterValueForCommand(
+        $command,
+        ArrayAccess $source,
+        ReflectionParameter $parameter,
+        array $extras = []
+    )
     {
         if (array_key_exists($parameter->name, $extras)) {
             return $extras[$parameter->name];
