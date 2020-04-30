@@ -12,16 +12,16 @@
 
 namespace Vivid\Foundation;
 
-trait Loggable {
+trait Loggable
+{
+    private $logger;
 
-	private $logger;
+    public function log($caller = null)
+    {
+        if (!$caller) {
+            $caller = get_called_class();
+        }
 
-	public function log($caller = null)
-	{
-		if (! $caller)
-			$caller = get_called_class();
-		
-		return new Logger($caller);
-	}
-
+        return new Logger($caller);
+    }
 }
