@@ -62,8 +62,7 @@ trait MarshalTrait
         ArrayAccess $source,
         ReflectionParameter $parameter,
         array $extras = []
-    )
-    {
+    ) {
         if (array_key_exists($parameter->name, $extras)) {
             return $extras[$parameter->name];
         }
