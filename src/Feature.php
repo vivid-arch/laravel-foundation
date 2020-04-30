@@ -19,4 +19,5 @@ abstract class Feature
     use MarshalTrait;
     use DispatchesJobs;
     use JobDispatcherTrait;
+    use Loggable;
 }
