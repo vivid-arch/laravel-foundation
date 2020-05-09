@@ -21,5 +21,5 @@ namespace Vivid\Foundation;
  */
 abstract class Job
 {
-	use Loggable;
+    use Loggable;
 }
