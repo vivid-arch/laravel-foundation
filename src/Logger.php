@@ -18,11 +18,20 @@ class Logger {
 
 	private $caller;
 
+    /**
+     * Logger constructor.
+     * @param $caller
+     */
 	public function __construct($caller)
 	{
 		$this->caller = $caller;
 	}
 
+    /**
+     * Log a Debug message.
+     *
+     * @param $message
+     */
 	public function debug($message)
 	{
 		Log::debug(
@@ -30,6 +39,11 @@ class Logger {
 		);
 	}
 
+    /**
+     * Log an Info message.
+     *
+     * @param $message
+     */
 	public function info($message)
 	{
 		Log::info(
@@ -37,6 +51,11 @@ class Logger {
 		);
 	}
 
+    /**
+     * Log a Notice message.
+     *
+     * @param $message
+     */
 	public function notice($message)
 	{
 		Log::notice(
@@ -44,6 +63,11 @@ class Logger {
 		);
 	}
 
+    /**
+     * Log a Warning message.
+     *
+     * @param $message
+     */
 	public function warning($message)
 	{
 		Log::warning(
@@ -51,6 +75,11 @@ class Logger {
 		);
 	}
 
+    /**
+     * Log an Error message.
+     *
+     * @param $message
+     */
 	public function error($message)
 	{
 		Log::error(
@@ -58,13 +87,23 @@ class Logger {
 		);
 	}
 
-	public function crititcal($message)
+    /**
+     * Log a Critical message.
+     *
+     * @param $message
+     */
+	public function critical($message)
 	{
 		Log::crititcal(
 			$this->prepareMessage($message, $this->caller)
 		);
 	}
 
+    /**
+     * Log an Alert message.
+     *
+     * @param $message
+     */
 	public function alert($message)
 	{
 		Log::alert(
@@ -72,6 +111,11 @@ class Logger {
 		);
 	}
 
+    /**
+     * Log an Emergency message.
+     *
+     * @param $message
+     */
 	public function emergency($message)
 	{
 		Log::emergency(
@@ -79,6 +123,13 @@ class Logger {
 		);
 	}
 
+    /**
+     * Format the message
+     *
+     * @param $message
+     * @param $caller
+     * @return string
+     */
 	private function prepareMessage($message, $caller)
 	{
 		return "[$caller] $message";

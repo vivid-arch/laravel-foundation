@@ -16,6 +16,12 @@ trait Loggable {
 
 	private $logger;
 
+    /**
+     * Return an instance of the Vivid Logger
+     *
+     * @param null $caller
+     * @return Logger
+     */
 	public function log($caller = null)
 	{
 		if (! $caller)
