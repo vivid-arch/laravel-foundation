@@ -19,4 +19,5 @@ abstract class Operation
     use MarshalTrait;
     use DispatchesJobs;
     use JobDispatcherTrait;
+    use Loggable;
 }
