@@ -10,7 +10,7 @@ return [
     | Add here the Device Service Providers that you would like to load.
     |
     | You can also toggle which devices will be loaded by the application
-    | by adding true of false to each device. For example:
+    | by adding true or false to each device. For example:
     |
     | Will be registered:
     | 'devices' => [
@@ -24,7 +24,7 @@ return [
     | ]
     |
     | TIP: You can also use env variables to control how and when the devices
-    | will be loaded. For example you can disable certain devices for certain enviroments!
+    | will be loaded. For example you can disable certain devices for certain environments.
     |
     */
     'devices' => [
