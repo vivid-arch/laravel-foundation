@@ -31,4 +31,6 @@ return [
 
     ],
 
+    'broadcast_events' => true
+
 ];
