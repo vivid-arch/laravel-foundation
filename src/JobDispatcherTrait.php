@@ -20,7 +20,7 @@ use Vivid\Foundation\Events\JobStarted;
 trait JobDispatcherTrait
 {
     /**
-     * beautifier function to be called instead of the
+     * Beautifier function to be called instead of the
      * laravel function dispatchFromArray.
      * When the $arguments is an instance of Request
      * it will call dispatchFrom instead.
@@ -50,6 +50,38 @@ trait JobDispatcherTrait
         }
 
         return $result;
+    }
+
+    /**
+     * Beautifier wrapper to be used to conditionally
+     * run a job without having to use ifs inside the feature.
+     *
+     * @param $condition
+     * @param $job
+     * @param array $arguments
+     * @param array $extra
+     *
+     * @return mixed
+     */
+    public function runIf(bool $condition, $job, $arguments = [], $extra = [])
+    {
+        if ($condition) return $this->run($job, $arguments, $extra);
+    }
+
+    /**
+     * Beautifier wrapper to be used to conditionally
+     * run a job without having to use ifs inside the feature.
+     *
+     * @param bool $condition
+     * @param $job
+     * @param array $arguments
+     * @param array $extra
+     *
+     * @return mixed
+     */
+    public function runUnless(bool $condition, $job, $arguments = [], $extra = [])
+    {
+        if (! $condition) return $this->run($job, $arguments, $extra);
     }
 
     /**
