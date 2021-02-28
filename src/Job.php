@@ -22,4 +22,13 @@ namespace Vivid\Foundation;
 abstract class Job
 {
     use Loggable;
+
+    /**
+     * Hide the content of the parameters passed to Jobs from
+     * appearing to logging and debugging systems like
+     * Laravel Telescope. Used for sensitive data.
+     *
+     * @var bool
+     */
+    public $silent = false;
 }

@@ -42,7 +42,7 @@ trait JobDispatcherTrait
 
             if (config(
                 'vivid.broadcast_events', true
-            )) event(new JobStarted(get_class($job), $arguments));
+            )) event(new JobStarted(get_class($job), $job->silent ? ['JOB_IS_SILENT'] : $arguments));
 
             resolve('Vivid\Foundation\Instance')->addToJobStack(
                 get_class($job)
