@@ -25,13 +25,12 @@ trait ServesFeaturesTrait
      * Serve the given feature with the given arguments.
      *
      * @param string $feature
-     * @param array  $arguments
-     *
-     * @throws \ReflectionException
+     * @param array $arguments
      *
      * @return mixed
+     * @throws \ReflectionException
      */
-    public function serve($feature, $arguments = [])
+    public function serve(string $feature, $arguments = [])
     {
         event(new FeatureStarted($feature, $arguments));
 
