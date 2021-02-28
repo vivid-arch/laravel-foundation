@@ -32,7 +32,7 @@ trait ServesFeaturesTrait
      */
     public function serve(string $feature, $arguments = [])
     {
-        if (config('vivid.broadcast_events')) event(new FeatureStarted($feature, $arguments));
+        if (config('vivid.broadcast_events', true)) event(new FeatureStarted($feature, $arguments));
 
         resolve('Vivid\Foundation\Instance')->setFeature(
             $feature

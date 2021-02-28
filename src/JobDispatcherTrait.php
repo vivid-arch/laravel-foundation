@@ -41,7 +41,7 @@ trait JobDispatcherTrait
             }
 
             if (config(
-                'vivid.broadcast_events'
+                'vivid.broadcast_events', true
             )) event(new JobStarted(get_class($job), $arguments));
 
             resolve('Vivid\Foundation\Instance')->addToJobStack(
