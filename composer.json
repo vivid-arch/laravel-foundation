@@ -23,5 +23,8 @@
                 "Vivid\\Foundation\\VividServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0"
     }
 }
