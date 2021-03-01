@@ -45,12 +45,14 @@ class Instance
 
     /**
      * @param string $job
+     * @param $arguments
      */
-    public function addToJobStack(string $job)
+    public function addToJobStack(string $job, $arguments = null)
     {
         array_push($this->jobs, [
             'fqn'  => $job,
             'time' => microtime(true),
+            'data' => $arguments
         ]);
     }
 
