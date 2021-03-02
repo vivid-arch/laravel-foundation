@@ -34,6 +34,6 @@ return [
     /*
      | Control whether or not the FeatureStarted and JobStarted events will be fired.
      */
-    'broadcast_events' => true
+    'broadcast_events' => true,
 
 ];

@@ -24,15 +24,18 @@ trait ServesFeaturesTrait
     /**
      * Serve the given feature with the given arguments.
      *
-     * @param string    $feature
-     * @param array     $arguments
+     * @param string $feature
+     * @param array  $arguments
+     *
+     * @throws \ReflectionException
      *
      * @return mixed
-     * @throws \ReflectionException
      */
     public function serve(string $feature, $arguments = [])
     {
-        if (config('vivid.broadcast_events', true)) event(new FeatureStarted($feature, $arguments));
+        if (config('vivid.broadcast_events', true)) {
+            event(new FeatureStarted($feature, $arguments));
+        }
 
         resolve('Vivid\Foundation\Instance')->setFeature(
             $feature
