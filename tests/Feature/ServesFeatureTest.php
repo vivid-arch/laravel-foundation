@@ -6,8 +6,8 @@ use Vivid\Foundation\ServesFeaturesTrait;
 use Vivid\Foundation\Tests\MockApp\Features\TestBlankFeature;
 use Vivid\Foundation\Tests\TestCase;
 
-class ServesFeatureTest extends TestCase {
-
+class ServesFeatureTest extends TestCase
+{
     use ServesFeaturesTrait;
 
     /*
@@ -18,5 +18,4 @@ class ServesFeatureTest extends TestCase {
         $out = $this->serve(TestBlankFeature::class);
         $this->assertEquals('TestBlankFeature', $out);
     }
-
 }

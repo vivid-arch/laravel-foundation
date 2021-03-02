@@ -52,7 +52,7 @@ class Instance
         array_push($this->jobs, [
             'fqn'  => $job,
             'time' => microtime(true),
-            'data' => $arguments
+            'data' => $arguments,
         ]);
     }
 

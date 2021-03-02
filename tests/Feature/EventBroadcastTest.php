@@ -8,12 +8,12 @@ use Vivid\Foundation\Events\FeatureStarted;
 use Vivid\Foundation\Events\JobStarted;
 use Vivid\Foundation\ServesFeaturesTrait;
 use Vivid\Foundation\Tests\MockApp\Features\TestBlankFeature;
-use Vivid\Foundation\Tests\MockApp\Jobs\TestBlankJob;
 use Vivid\Foundation\Tests\MockApp\Jobs\JobContainerClass;
+use Vivid\Foundation\Tests\MockApp\Jobs\TestBlankJob;
 use Vivid\Foundation\Tests\TestCase;
 
-class EventBroadcastTest extends TestCase {
-
+class EventBroadcastTest extends TestCase
+{
     use ServesFeaturesTrait;
 
     /*
@@ -37,10 +37,9 @@ class EventBroadcastTest extends TestCase {
         Event::fake();
         Config::set('vivid.broadcast_events', true);
 
-        $c = new JobContainerClass;
+        $c = new JobContainerClass();
         $c->run(TestBlankJob::class, []);
 
         Event::assertDispatched(JobStarted::class);
     }
-
 }

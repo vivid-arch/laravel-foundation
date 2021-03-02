@@ -4,12 +4,12 @@ namespace Vivid\Foundation\Tests\MockApp\Jobs;
 
 use Vivid\Foundation\Job;
 
-class TestSilentJob extends Job {
-
+class TestSilentJob extends Job
+{
     public $silent = true;
     private $args;
 
-    function __construct($args)
+    public function __construct($args)
     {
         $this->args = $args;
     }
@@ -18,5 +18,4 @@ class TestSilentJob extends Job {
     {
         return 'TestSilentJob';
     }
-
 }

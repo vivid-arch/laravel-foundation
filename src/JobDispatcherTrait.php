@@ -25,9 +25,9 @@ trait JobDispatcherTrait
      * When the $arguments is an instance of Request
      * it will call dispatchFrom instead.
      *
-     * @param string $job
+     * @param string                         $job
      * @param array|\Illuminate\Http\Request $arguments
-     * @param array $extra
+     * @param array                          $extra
      *
      * @return mixed
      */
@@ -41,12 +41,15 @@ trait JobDispatcherTrait
             }
 
             if (config(
-                'vivid.broadcast_events', true
-            )) event(new JobStarted(get_class($job), $job->silent ? ['JOB_IS_SILENT'] : $arguments));
+                'vivid.broadcast_events',
+                true
+            )) {
+                event(new JobStarted(get_class($job), $job->silent ? ['JOB_IS_SILENT'] : $arguments));
+            }
 
             resolve('Vivid\Foundation\Instance')->addToJobStack(
                 get_class($job),
-                (config('app.env') == 'production')? null : $arguments
+                (config('app.env') == 'production') ? null : $arguments
             );
 
             $result = $this->dispatch($job, $arguments);
@@ -68,7 +71,9 @@ trait JobDispatcherTrait
      */
     public function runIf(bool $condition, $job, $arguments = [], $extra = [])
     {
-        if ($condition) return $this->run($job, $arguments, $extra);
+        if ($condition) {
+            return $this->run($job, $arguments, $extra);
+        }
     }
 
     /**
@@ -84,7 +89,9 @@ trait JobDispatcherTrait
      */
     public function runUnless(bool $condition, $job, $arguments = [], $extra = [])
     {
-        if (! $condition) return $this->run($job, $arguments, $extra);
+        if (!$condition) {
+            return $this->run($job, $arguments, $extra);
+        }
     }
 
     /**
