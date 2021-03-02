@@ -14,125 +14,126 @@ namespace Vivid\Foundation;
 
 use Log;
 
-class Logger {
-
-	private $caller;
+class Logger
+{
+    private $caller;
 
     /**
      * Logger constructor.
+     *
      * @param $caller
      */
-	public function __construct($caller)
-	{
-		$this->caller = $caller;
-	}
+    public function __construct($caller)
+    {
+        $this->caller = $caller;
+    }
 
     /**
      * Log a Debug message.
      *
      * @param $message
      */
-	public function debug($message)
-	{
-		Log::debug(
-			$this->prepareMessage($message, $this->caller)
-		);
-	}
+    public function debug($message)
+    {
+        Log::debug(
+            $this->prepareMessage($message, $this->caller)
+        );
+    }
 
     /**
      * Log an Info message.
      *
      * @param $message
      */
-	public function info($message)
-	{
-		Log::info(
-			$this->prepareMessage($message, $this->caller)
-		);
-	}
+    public function info($message)
+    {
+        Log::info(
+            $this->prepareMessage($message, $this->caller)
+        );
+    }
 
     /**
      * Log a Notice message.
      *
      * @param $message
      */
-	public function notice($message)
-	{
-		Log::notice(
-			$this->prepareMessage($message, $this->caller)
-		);
-	}
+    public function notice($message)
+    {
+        Log::notice(
+            $this->prepareMessage($message, $this->caller)
+        );
+    }
 
     /**
      * Log a Warning message.
      *
      * @param $message
      */
-	public function warning($message)
-	{
-		Log::warning(
-			$this->prepareMessage($message, $this->caller)
-		);
-	}
+    public function warning($message)
+    {
+        Log::warning(
+            $this->prepareMessage($message, $this->caller)
+        );
+    }
 
     /**
      * Log an Error message.
      *
      * @param $message
      */
-	public function error($message)
-	{
-		Log::error(
-			$this->prepareMessage($message, $this->caller)
-		);
-	}
+    public function error($message)
+    {
+        Log::error(
+            $this->prepareMessage($message, $this->caller)
+        );
+    }
 
     /**
      * Log a Critical message.
      *
      * @param $message
      */
-	public function critical($message)
-	{
-		Log::crititcal(
-			$this->prepareMessage($message, $this->caller)
-		);
-	}
+    public function critical($message)
+    {
+        Log::crititcal(
+            $this->prepareMessage($message, $this->caller)
+        );
+    }
 
     /**
      * Log an Alert message.
      *
      * @param $message
      */
-	public function alert($message)
-	{
-		Log::alert(
-			$this->prepareMessage($message, $this->caller)
-		);
-	}
+    public function alert($message)
+    {
+        Log::alert(
+            $this->prepareMessage($message, $this->caller)
+        );
+    }
 
     /**
      * Log an Emergency message.
      *
      * @param $message
      */
-	public function emergency($message)
-	{
-		Log::emergency(
-			$this->prepareMessage($message, $this->caller)
-		);
-	}
+    public function emergency($message)
+    {
+        Log::emergency(
+            $this->prepareMessage($message, $this->caller)
+        );
+    }
 
     /**
-     * Format the message
+     * Format the message.
      *
      * @param $message
      * @param $caller
+     *
      * @return string
      */
-	private function prepareMessage($message, $caller)
-	{
-		return "[$caller] $message";
-	}
-
+    private function prepareMessage($message, $caller)
+    {
+        return "[$caller] $message";
+    }
 }
