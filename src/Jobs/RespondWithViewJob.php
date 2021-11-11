@@ -2,6 +2,8 @@
 
 namespace Vivid\Foundation\Jobs;
 
+use Vivid\Foundation\Job;
+
 class RespondWithViewJob extends Job
 {
     private $template;
@@ -15,6 +17,6 @@ class RespondWithViewJob extends Job
 
     public function handle()
     {
-        return view($template, $data);
+        return view($this->template, $this->data);
     }
 }
