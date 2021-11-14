@@ -12,10 +12,8 @@
 
 namespace Vivid\Foundation;
 
-use Vivid\Foundation\Events\JobStarted;
-
-class Event {
-
+class Event
+{
     public static function dispatch(object $event): void
     {
         if (config(
@@ -25,5 +23,4 @@ class Event {
             event($event);
         }
     }
-
 }

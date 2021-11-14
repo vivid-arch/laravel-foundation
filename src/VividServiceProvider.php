@@ -40,7 +40,7 @@ class VividServiceProvider extends ServiceProvider
     {
         // Register the configuration file
         $this->publishes([
-            __DIR__.'/../config/vivid.php' => config_path('vivid.php'),
+            __DIR__ . '/../config/vivid.php' => config_path('vivid.php'),
         ], 'vivid-config');
     }
 

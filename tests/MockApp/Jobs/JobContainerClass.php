@@ -3,8 +3,8 @@
 namespace Vivid\Foundation\Tests\MockApp\Jobs;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Vivid\Foundation\JobDispatcherTrait;
 use Vivid\Foundation\Contracts\Loggable;
+use Vivid\Foundation\JobDispatcherTrait;
 use Vivid\Foundation\MarshalTrait;
 
 /*

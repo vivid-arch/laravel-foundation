@@ -12,16 +12,15 @@
 
 namespace Vivid\Foundation;
 
-trait CacheDefaults {
-
-    function getCacheKey(): string
+trait CacheDefaults
+{
+    public function getCacheKey(): string
     {
         return static::class;
     }
 
-    function getCacheExpiration(): int
+    public function getCacheExpiration(): int
     {
         return 600;
     }
-
 }

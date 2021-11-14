@@ -12,10 +12,9 @@
 
 namespace Vivid\Foundation\Contracts;
 
-interface Cacheable {
+interface Cacheable
+{
+    public function getCacheKey(): string;
 
-    function getCacheKey(): string;
-
-    function getCacheExpiration(): int;
-
+    public function getCacheExpiration(): int;
 }

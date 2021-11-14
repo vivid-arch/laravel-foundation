@@ -52,9 +52,9 @@ trait JobDispatcherTrait
         if ($job instanceof Cacheable) {
             if (Cache::has($job->getCacheKey())) {
                 Event::dispatch(new JobCacheHit($jobClass, $job->getCacheKey()));
+
                 return Cache::get($job->getCacheKey());
-            }
-            else {
+            } else {
                 Event::dispatch(new JobCacheMiss($jobClass, $job->getCacheKey()));
             }
         }
