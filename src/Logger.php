@@ -4,7 +4,7 @@
  * This file is part of the vivid-foundation project.
  *
  * Copyright for portions of project lucid-foundation are held by VineLab, 2016 as part of Lucid Architecture.
- * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2019.
+ * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2021.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,18 +12,18 @@
 
 namespace Vivid\Foundation;
 
-use Log;
+use Illuminate\Support\Facades\Log;
 
 class Logger
 {
-    private $caller;
+    private string $caller;
 
     /**
      * Logger constructor.
      *
-     * @param $caller
+     * @param string $caller
      */
-    public function __construct($caller)
+    public function __construct(string $caller)
     {
         $this->caller = $caller;
     }
@@ -31,9 +31,9 @@ class Logger
     /**
      * Log a Debug message.
      *
-     * @param $message
+     * @param string $message
      */
-    public function debug($message)
+    public function debug(string $message): void
     {
         Log::debug(
             $this->prepareMessage($message, $this->caller)
@@ -43,9 +43,9 @@ class Logger
     /**
      * Log an Info message.
      *
-     * @param $message
+     * @param string $message
      */
-    public function info($message)
+    public function info(string $message): void
     {
         Log::info(
             $this->prepareMessage($message, $this->caller)
@@ -55,9 +55,9 @@ class Logger
     /**
      * Log a Notice message.
      *
-     * @param $message
+     * @param string $message
      */
-    public function notice($message)
+    public function notice(string $message): void
     {
         Log::notice(
             $this->prepareMessage($message, $this->caller)
@@ -67,9 +67,9 @@ class Logger
     /**
      * Log a Warning message.
      *
-     * @param $message
+     * @param string $message
      */
-    public function warning($message)
+    public function warning(string $message): void
     {
         Log::warning(
             $this->prepareMessage($message, $this->caller)
@@ -79,9 +79,9 @@ class Logger
     /**
      * Log an Error message.
      *
-     * @param $message
+     * @param string $message
      */
-    public function error($message)
+    public function error(string $message): void
     {
         Log::error(
             $this->prepareMessage($message, $this->caller)
@@ -91,11 +91,11 @@ class Logger
     /**
      * Log a Critical message.
      *
-     * @param $message
+     * @param string $message
      */
-    public function critical($message)
+    public function critical(string $message): void
     {
-        Log::crititcal(
+        Log::critical(
             $this->prepareMessage($message, $this->caller)
         );
     }
@@ -103,9 +103,9 @@ class Logger
     /**
      * Log an Alert message.
      *
-     * @param $message
+     * @param string $message
      */
-    public function alert($message)
+    public function alert(string $message): void
     {
         Log::alert(
             $this->prepareMessage($message, $this->caller)
@@ -115,9 +115,9 @@ class Logger
     /**
      * Log an Emergency message.
      *
-     * @param $message
+     * @param string $message
      */
-    public function emergency($message)
+    public function emergency(string $message): void
     {
         Log::emergency(
             $this->prepareMessage($message, $this->caller)
@@ -127,12 +127,12 @@ class Logger
     /**
      * Format the message.
      *
-     * @param $message
-     * @param $caller
+     * @param string $message
+     * @param string $caller
      *
      * @return string
      */
-    private function prepareMessage($message, $caller)
+    private function prepareMessage(string $message, string $caller)
     {
         return "[$caller] $message";
     }

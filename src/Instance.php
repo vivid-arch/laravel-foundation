@@ -4,7 +4,7 @@
  * This file is part of the vivid-foundation project.
  *
  * Copyright for portions of project lucid-foundation are held by VineLab, 2016 as part of Lucid Architecture.
- * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2019.
+ * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2021.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,42 +12,35 @@
 
 namespace Vivid\Foundation;
 
-/**
- * @author Meletios Flevarakis <m.flevarakis@gmail.com>
- */
 class Instance
 {
+    /**
+     * @var string|float
+     */
     protected $startTime;
-    protected $controller;
-    protected $feature;
-    protected $jobs = [];
+    protected string $controller;
+    protected string $feature;
+    protected array $jobs = [];
 
     public function __construct()
     {
         $this->startTime = microtime(true);
     }
 
-    /**
-     * @param string $controller
-     */
-    public function setController(string $controller)
+    public function setController(string $controller): void
     {
         $this->controller = $controller;
     }
 
-    /**
-     * @param string $feature
-     */
-    public function setFeature(string $feature)
+    public function setFeature(string $feature): void
     {
         $this->feature = $feature;
     }
 
     /**
-     * @param string $job
-     * @param $arguments
+     * @param mixed $arguments
      */
-    public function addToJobStack(string $job, $arguments = null)
+    public function addToJobStack(string $job, $arguments = null): void
     {
         array_push($this->jobs, [
             'fqn'  => $job,
@@ -56,25 +49,16 @@ class Instance
         ]);
     }
 
-    /**
-     * @return mixed
-     */
-    public function controller()
+    public function controller(): string
     {
         return $this->controller;
     }
 
-    /**
-     * @return mixed
-     */
-    public function feature()
+    public function feature(): string
     {
         return $this->feature;
     }
 
-    /**
-     * @return array
-     */
     public function jobs(): array
     {
         return $this->jobs;

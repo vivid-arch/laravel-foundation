@@ -12,18 +12,18 @@
 
 namespace Vivid\Foundation;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Vivid\Foundation\Events\JobStarted;
 
-/**
- * An abstract Job that can be managed with a queue
- * when extended the job will be queued by default.
- */
-class QueueableJob extends Job implements ShouldQueue
-{
-    use SerializesModels;
-    use InteractsWithQueue;
-    use Queueable;
+class Event {
+
+    public static function dispatch(object $event): void
+    {
+        if (config(
+            'vivid.broadcast_events',
+            false
+        )) {
+            event($event);
+        }
+    }
+
 }

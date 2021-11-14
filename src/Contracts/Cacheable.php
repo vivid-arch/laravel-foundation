@@ -10,19 +10,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Vivid\Foundation\Events;
+namespace Vivid\Foundation\Contracts;
 
-class JobStarted
-{
-    public string $name;
-    public array $arguments;
+interface Cacheable {
 
-    /**
-     * JobStarted constructor.
-     */
-    public function __construct(string $name, array $arguments = [])
-    {
-        $this->name = $name;
-        $this->arguments = $arguments;
-    }
+    function getCacheKey(): string;
+
+    function getCacheExpiration(): int;
+
 }

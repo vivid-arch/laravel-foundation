@@ -4,7 +4,7 @@
  * This file is part of the vivid-foundation project.
  *
  * Copyright for portions of project lucid-foundation are held by VineLab, 2016 as part of Lucid Architecture.
- * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2019.
+ * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2021.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -22,15 +22,9 @@ abstract class RouteServiceProvider extends BaseServiceProvider
      *
      * @param \Illuminate\Routing\Router $router
      */
-    abstract public function map(Router $router);
+    abstract public function map(Router $router): void;
 
-    /**
-     * @param $router
-     * @param $namespace
-     * @param $pathApi
-     * @param $pathWeb
-     */
-    public function loadRoutesFiles($router, $namespace, $pathApi = null, $pathWeb = null)
+    public function loadRoutesFiles(Router $router, string $namespace, string $pathApi = null, string $pathWeb = null): void
     {
         if (is_file($pathApi)) {
             $this->mapApiRoutes($router, $namespace, $pathApi);
@@ -40,41 +34,18 @@ abstract class RouteServiceProvider extends BaseServiceProvider
         }
     }
 
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @param $router
-     * @param $namespace
-     * @param $path
-     * @param $prefix
-     *
-     * @return void
-     */
-    protected function mapApiRoutes($router, $namespace, $path, $prefix = 'api')
+    protected function mapApiRoutes(Router $router, string $namespace, string $path, string $prefix = 'api'): void
     {
         $router->group([
             'middleware' => 'api',
             'namespace'  => $namespace,
-            'prefix'     => $prefix, // to allow the delete or change of api prefix
+            'prefix'     => $prefix,
         ], function ($router) use ($path) {
             require $path;
         });
     }
 
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @param $router
-     * @param $namespace
-     * @param $path
-     *
-     * @return void
-     */
-    protected function mapWebRoutes($router, $namespace, $path)
+    protected function mapWebRoutes(Router $router, string $namespace, string $path): void
     {
         $router->group([
             'middleware' => 'web',

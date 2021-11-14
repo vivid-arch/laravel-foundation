@@ -4,7 +4,7 @@
  * This file is part of the vivid-foundation project.
  *
  * Copyright for portions of project lucid-foundation are held by VineLab, 2016 as part of Lucid Architecture.
- * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2019.
+ * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2021.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -26,9 +26,8 @@ trait MarshalTrait
      * @param \ArrayAccess $source
      * @param array        $extras
      *
+     * @return object
      * @throws \ReflectionException
-     *
-     * @return mixed
      */
     protected function marshal($command, ArrayAccess $source, array $extras = [])
     {
@@ -48,14 +47,15 @@ trait MarshalTrait
     /**
      * Get a parameter value for a marshaled command.
      *
-     * @param string               $command
-     * @param \ArrayAccess         $source
+     * @param string $command
+     * @param \ArrayAccess $source
      * @param \ReflectionParameter $parameter
-     * @param array                $extras
-     *
-     * @throws \ReflectionException
+     * @param array $extras
      *
      * @return mixed
+     * @throws Exception
+     *
+     * @throws \ReflectionException
      */
     protected function getParameterValueForCommand(
         $command,

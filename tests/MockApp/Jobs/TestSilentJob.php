@@ -6,7 +6,7 @@ use Vivid\Foundation\Job;
 
 class TestSilentJob extends Job
 {
-    public $silent = true;
+    public $redacted = true;
     private $args;
 
     public function __construct($args)

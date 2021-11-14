@@ -12,17 +12,24 @@
 
 namespace Vivid\Foundation\Events;
 
-class JobStarted
+class JobCacheSet
 {
     public string $name;
-    public array $arguments;
+    public string $key;
+    /**
+     * @var mixed
+     */
+    public $data;
 
     /**
-     * JobStarted constructor.
+     * JobCacheSet constructor.
+     *
+     * @param mixed $data
      */
-    public function __construct(string $name, array $arguments = [])
+    public function __construct(string $name, string $key, $data)
     {
         $this->name = $name;
-        $this->arguments = $arguments;
+        $this->key = $key;
+        $this->data = $data;
     }
 }

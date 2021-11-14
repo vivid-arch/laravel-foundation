@@ -12,18 +12,16 @@
 
 namespace Vivid\Foundation;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+trait CacheDefaults {
 
-/**
- * An abstract Job that can be managed with a queue
- * when extended the job will be queued by default.
- */
-class QueueableJob extends Job implements ShouldQueue
-{
-    use SerializesModels;
-    use InteractsWithQueue;
-    use Queueable;
+    function getCacheKey(): string
+    {
+        return static::class;
+    }
+
+    function getCacheExpiration(): int
+    {
+        return 600;
+    }
+
 }

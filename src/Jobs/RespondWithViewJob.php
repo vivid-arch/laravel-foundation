@@ -1,13 +1,23 @@
 <?php
 
+/*
+ * This file is part of the vivid-foundation project.
+ *
+ * Copyright for portions of project lucid-foundation are held by VineLab, 2016 as part of Lucid Architecture.
+ * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2021.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Vivid\Foundation\Jobs;
 
 use Vivid\Foundation\Job;
 
 class RespondWithViewJob extends Job
 {
-    private $template;
-    private $data;
+    private string $template;
+    private array $data;
 
     public function __construct(string $template, array $data)
     {
@@ -15,6 +25,9 @@ class RespondWithViewJob extends Job
         $this->data = $data;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     */
     public function handle()
     {
         return view($this->template, $this->data);

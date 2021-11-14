@@ -4,7 +4,7 @@
  * This file is part of the vivid-foundation project.
  *
  * Copyright for portions of project lucid-foundation are held by VineLab, 2016 as part of Lucid Architecture.
- * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2019.
+ * All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2021.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,7 +14,12 @@ namespace Vivid\Foundation;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use ReflectionClass;
+use Vivid\Foundation\Contracts\Cacheable;
+use Vivid\Foundation\Events\JobCacheHit;
+use Vivid\Foundation\Events\JobCacheMiss;
+use Vivid\Foundation\Events\JobCacheSet;
 use Vivid\Foundation\Events\JobStarted;
 
 trait JobDispatcherTrait
@@ -25,51 +30,53 @@ trait JobDispatcherTrait
      * When the $arguments is an instance of Request
      * it will call dispatchFrom instead.
      *
-     * @param string                         $job
-     * @param array|\Illuminate\Http\Request $arguments
-     * @param array                          $extra
+     * @param string $jobClass
+     * @param array $arguments
+     * @param array $extra
      *
      * @return mixed
+     * @throws \ReflectionException
      */
-    public function run(string $job, $arguments = [], $extra = [])
+    public function run(string $jobClass, array $arguments = [], array $extra = [])
     {
-        if ($arguments instanceof Request) {
-            $result = $this->dispatch($this->marshal($job, $arguments, $extra));
-        } else {
-            if (!is_object($job)) {
-                $job = $this->marshal($job, new Collection(), $arguments);
+        /** @var Job $job */
+        $job = $this->marshal($jobClass, new Collection(), $arguments);
+
+        Event::dispatch(new JobStarted(get_class($job), $job->redacted ? ['JOB_DATA_REDACTED'] : $arguments));
+
+        resolve('Vivid\Foundation\Instance')->addToJobStack(
+            get_class($job),
+            (config('app.env') == 'production') ? null : $arguments
+        );
+
+        if ($job instanceof Cacheable) {
+            if (Cache::has($job->getCacheKey())) {
+                Event::dispatch(new JobCacheHit($jobClass, $job->getCacheKey()));
+                return Cache::get($job->getCacheKey());
             }
-
-            if (config(
-                'vivid.broadcast_events',
-                true
-            )) {
-                event(new JobStarted(get_class($job), $job->silent ? ['JOB_IS_SILENT'] : $arguments));
+            else {
+                Event::dispatch(new JobCacheMiss($jobClass, $job->getCacheKey()));
             }
-
-            resolve('Vivid\Foundation\Instance')->addToJobStack(
-                get_class($job),
-                (config('app.env') == 'production') ? null : $arguments
-            );
-
-            $result = $this->dispatch($job, $arguments);
         }
 
-        return $result;
+        $response = $this->dispatch($job);
+
+        if ($job instanceof Cacheable) {
+            Cache::put($job->getCacheKey(), $response, $job->getCacheExpiration());
+            Event::dispatch(new JobCacheSet($jobClass, $job->getCacheKey(), $response));
+        }
+
+        return $response;
     }
 
     /**
      * Beautifier wrapper to be used to conditionally
      * run a job without having to use ifs inside the feature.
      *
-     * @param $condition
-     * @param $job
-     * @param array $arguments
-     * @param array $extra
-     *
-     * @return mixed
+     * @return mixed|void
+     * @throws \ReflectionException
      */
-    public function runIf(bool $condition, $job, $arguments = [], $extra = [])
+    public function runIf(bool $condition, string $job, array $arguments = [], array $extra = [])
     {
         if ($condition) {
             return $this->run($job, $arguments, $extra);
@@ -80,14 +87,10 @@ trait JobDispatcherTrait
      * Beautifier wrapper to be used to conditionally
      * run a job without having to use ifs inside the feature.
      *
-     * @param bool $condition
-     * @param $job
-     * @param array $arguments
-     * @param array $extra
-     *
-     * @return mixed
+     * @return mixed|void
+     * @throws \ReflectionException
      */
-    public function runUnless(bool $condition, $job, $arguments = [], $extra = [])
+    public function runUnless(bool $condition, string $job, array $arguments = [], array $extra = [])
     {
         if (!$condition) {
             return $this->run($job, $arguments, $extra);
@@ -97,20 +100,15 @@ trait JobDispatcherTrait
     /**
      * Run the given job in the given queue.
      *
-     * @param string $job
-     * @param array  $arguments
-     * @param string $queue
-     *
-     * @throws \ReflectionException
-     *
      * @return mixed
+     * @throws \ReflectionException
      */
-    public function runInQueue($job, array $arguments = [], $queue = 'default')
+    public function runInQueue(string $job, array $arguments = [], string $queue = 'default')
     {
         // instantiate and queue the job
         $reflection = new ReflectionClass($job);
         $jobInstance = $reflection->newInstanceArgs($arguments);
-        $jobInstance->onQueue((string) $queue);
+        $jobInstance->onQueue((string) $queue); // @phpstan-ignore-line
 
         return $this->dispatch($jobInstance);
     }
