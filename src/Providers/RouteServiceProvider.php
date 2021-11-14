@@ -22,7 +22,7 @@ abstract class RouteServiceProvider extends BaseServiceProvider
      *
      * @param \Illuminate\Routing\Router $router
      */
-    abstract public function map(Router $router): void;
+    abstract public function map(Router $router);
 
     public function loadRoutesFiles(Router $router, string $namespace, string $pathApi = null, string $pathWeb = null): void
     {
