@@ -22,7 +22,7 @@ abstract class RouteServiceProvider extends BaseServiceProvider
      *
      * @param \Illuminate\Routing\Router $router
      */
-    abstract public function map(Router $router);
+    abstract public function map(Router $router); // @phpstan-ignore-line
 
     public function loadRoutesFiles(Router $router, string $namespace, string $pathApi = null, string $pathWeb = null): void
     {

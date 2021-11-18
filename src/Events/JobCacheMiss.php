@@ -14,15 +14,15 @@ namespace Vivid\Foundation\Events;
 
 class JobCacheMiss
 {
-    public string $name;
+    public string $job;
     public string $key;
 
     /**
      * JobCacheHit constructor.
      */
-    public function __construct(string $name, string $key)
+    public function __construct(string $job, string $key)
     {
-        $this->name = $name;
+        $this->job = $job;
         $this->key = $key;
     }
 }

@@ -17,122 +17,103 @@ use Illuminate\Support\Facades\Log;
 class Logger
 {
     private string $caller;
+    private string $channel;
 
-    /**
-     * Logger constructor.
-     *
-     * @param string $caller
-     */
-    public function __construct(string $caller)
+    public function __construct(string $channel)
+    {
+        $this->channel = $channel;
+    }
+
+    public function setCaller(string $caller): Logger
     {
         $this->caller = $caller;
+        return $this;
     }
 
     /**
      * Log a Debug message.
-     *
-     * @param string $message
      */
     public function debug(string $message): void
     {
-        Log::debug(
+        Log::channel($this->channel)->debug(
             $this->prepareMessage($message, $this->caller)
         );
     }
 
     /**
      * Log an Info message.
-     *
-     * @param string $message
      */
     public function info(string $message): void
     {
-        Log::info(
+        Log::channel($this->channel)->info(
             $this->prepareMessage($message, $this->caller)
         );
     }
 
     /**
      * Log a Notice message.
-     *
-     * @param string $message
      */
     public function notice(string $message): void
     {
-        Log::notice(
+        Log::channel($this->channel)->notice(
             $this->prepareMessage($message, $this->caller)
         );
     }
 
     /**
      * Log a Warning message.
-     *
-     * @param string $message
      */
     public function warning(string $message): void
     {
-        Log::warning(
+        Log::channel($this->channel)->warning(
             $this->prepareMessage($message, $this->caller)
         );
     }
 
     /**
      * Log an Error message.
-     *
-     * @param string $message
      */
     public function error(string $message): void
     {
-        Log::error(
+        Log::channel($this->channel)->error(
             $this->prepareMessage($message, $this->caller)
         );
     }
 
     /**
      * Log a Critical message.
-     *
-     * @param string $message
      */
     public function critical(string $message): void
     {
-        Log::critical(
+        Log::channel($this->channel)->critical(
             $this->prepareMessage($message, $this->caller)
         );
     }
 
     /**
      * Log an Alert message.
-     *
-     * @param string $message
      */
     public function alert(string $message): void
     {
-        Log::alert(
+        Log::channel($this->channel)->alert(
             $this->prepareMessage($message, $this->caller)
         );
     }
 
     /**
      * Log an Emergency message.
-     *
-     * @param string $message
      */
     public function emergency(string $message): void
     {
-        Log::emergency(
+        Log::channel($this->channel)->emergency(
             $this->prepareMessage($message, $this->caller)
         );
     }
 
     /**
      * Format the message.
-     *
-     * @param string $message
-     * @param string $caller
-     *
-     * @return string
      */
-    private function prepareMessage(string $message, string $caller)
+    private function prepareMessage(string $message, string $caller): string
     {
         return "[$caller] $message";
     }

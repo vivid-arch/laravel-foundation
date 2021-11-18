@@ -21,12 +21,19 @@ class VividServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Add the Instance class to the container
+        // Add the Instance class to the container.
         $this->app->singleton('Vivid\Foundation\Instance', function ($app) {
             return new Instance();
         });
 
-        $devices = config('vivid.devices');
+        // Add the Logger class to the container.
+        $this->app->singleton('Vivid\Foundation\Logger', function ($app) {
+            return new Logger(
+                config('vivid.log_channel', 'stack')
+            );
+        });
+
+        $devices = config('vivid.devices', []);
 
         if (is_array($devices)) {
             $this->registerDevices($devices);

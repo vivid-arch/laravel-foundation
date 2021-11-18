@@ -18,8 +18,8 @@ class Instance
      * @var string|float
      */
     protected $startTime;
-    protected $controller = null;
-    protected $feature = null;
+    protected ?string $controller = null;
+    protected ?string $feature = null;
     protected array $jobs = [];
 
     public function __construct()

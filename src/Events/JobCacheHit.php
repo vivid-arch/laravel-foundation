@@ -14,7 +14,7 @@ namespace Vivid\Foundation\Events;
 
 class JobCacheHit
 {
-    public string $name;
+    public string $job;
     public string $key;
 
     /**
@@ -22,7 +22,7 @@ class JobCacheHit
      */
     public function __construct(string $name, string $key)
     {
-        $this->name = $name;
+        $this->job = $name;
         $this->key = $key;
     }
 }

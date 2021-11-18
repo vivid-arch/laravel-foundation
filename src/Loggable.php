@@ -20,8 +20,6 @@ trait Loggable
      * Return an instance of the Vivid Logger.
      *
      * @param string|null $caller
-     *
-     * @return Logger
      */
     public function log(string $caller = null): Logger
     {
@@ -29,6 +27,9 @@ trait Loggable
             $caller = get_called_class();
         }
 
-        return new Logger($caller);
+        /** @var Logger $logger */
+        $logger = resolve(Logger::class);
+
+        return $logger->setCaller($caller);
     }
 }

@@ -14,7 +14,7 @@ namespace Vivid\Foundation\Events;
 
 class JobCacheSet
 {
-    public string $name;
+    public string $job;
     public string $key;
     /**
      * @var mixed
@@ -26,9 +26,9 @@ class JobCacheSet
      *
      * @param mixed $data
      */
-    public function __construct(string $name, string $key, $data)
+    public function __construct(string $job, string $key, $data)
     {
-        $this->name = $name;
+        $this->job = $job;
         $this->key = $key;
         $this->data = $data;
     }

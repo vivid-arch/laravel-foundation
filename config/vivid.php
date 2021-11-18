@@ -24,7 +24,7 @@ return [
     | ]
     |
     | TIP: You can also use env variables to control how and when the devices
-    | will be loaded. For example you can disable certain devices for certain environments.
+    | will be loaded. For example, you can disable certain devices for certain environments.
     |
     */
     'devices' => [
@@ -36,4 +36,8 @@ return [
      */
     'broadcast_events' => true,
 
+    /*
+     | Set where the vivid logger will output the logs.
+     */
+    'log_channel' => 'stack'
 ];
