@@ -21,6 +21,6 @@ trait CacheDefaults
 
     public function getCacheExpiration(): int
     {
-        return 600;
+        return config('vivid.default_cache_duration', 600);
     }
 }

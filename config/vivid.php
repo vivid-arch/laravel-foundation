@@ -39,5 +39,10 @@ return [
     /*
      | Set where the vivid logger will output the logs.
      */
-    'log_channel' => 'stack'
+    'log_channel' => 'stack',
+
+    /*
+     | How long the cacheable Jobs should be kept for.
+     */
+    'default_cache_duration' => 600
 ];
