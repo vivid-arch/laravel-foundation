@@ -41,6 +41,6 @@ trait ServesFeaturesTrait
             $feature
         );
 
-        return $this->dispatch($this->marshal($feature, new Collection(), $arguments));
+        return $this->dispatchSync($this->marshal($feature, new Collection(), $arguments));
     }
 }
