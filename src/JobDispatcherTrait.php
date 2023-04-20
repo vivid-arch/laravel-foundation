@@ -59,7 +59,7 @@ trait JobDispatcherTrait
             }
         }
 
-        $response = $this->dispatch($job);
+        $response = $this->dispatchSync($job);
 
         if ($job instanceof Cacheable) {
             Cache::put($job->getCacheKey(), $response, $job->getCacheExpiration());
